@@ -8,6 +8,7 @@
     --footer-text-color: rgba(255, 255, 255, 0.6);
     --black-color: #000000;
     --icons-color: #AFB1B8;
+    --standart-cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -89,6 +90,7 @@ a {
     letter-spacing: 0.02em;
     line-height: 1.14;
     color: var(--primary-text-color);
+    transition: color 250ms var(--standart-cubic);
 }
 
 .nav-item > .link {
@@ -251,22 +253,50 @@ a {
     background-image: url('../images/astronaut.svg');
 }
 
-.what-we-do-list {
-    display: flex;
-}
-
-.what-we-do-item + .what-we-do-item {
-    margin-left: 30px;
-}
+/* Чем мы занимаемся */
 
 .what-we-do {
     text-align: center;
     padding-bottom: 94px;
 }
 
+.what-we-do-list {
+    display: flex;
+}
+
+.what-we-do-item {
+    position: relative;
+}
+
+.what-we-do-item + .what-we-do-item {
+    margin-left: 30px;
+}
+
 .what-we-do-img {
     display: block;
 }
+
+.service-description {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 27px 15px;
+
+    background-color: rgba(47, 48, 58, 0.8);
+    /* text-align: center; */
+}
+
+.service-text {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    font-weight: 700;
+    line-height: 1.14;
+    text-transform: uppercase;
+    color: var(--main-light-color);
+}
+
+
 
 /* Titles */
 
@@ -337,6 +367,7 @@ a {
     border-radius: 50%;
     background-color: transparent;
     color: var(--icons-color);
+    transition: color 250ms var(--standart-cubic), background-color 250ms var(--standart-cubic);
 }
 
 .card-social-link:hover,
@@ -376,6 +407,7 @@ a {
     border: 1px solid rgba(175, 177, 184, 1);
     border-radius: 4px;
     color: var(--icons-color);
+    transition: color 250ms var(--standart-cubic), border-color 250ms var(--standart-cubic);
 }
 
 .clients-icon {
@@ -443,6 +475,7 @@ a {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--main-light-color);
+    transition: background-color 250ms var(--standart-cubic);
 }
 
 .social-link-item:not(:last-child) {
@@ -489,6 +522,7 @@ a {
     background-color: var(--accent-bg-color);
     border-radius: 4px;
     border: none;
+    transition: background-color 250ms var(--standart-cubic), color 250ms var(--standart-cubic), box-shadow 250ms var(--standart-cubic);
 }
 
 .portfolio-button:hover,
@@ -511,6 +545,7 @@ a {
 
 .portfolio__link {
     display: block;
+    transition: box-shadow 250ms var(--standart-cubic);
 }
 
 .portfolio__link:hover,
@@ -518,11 +553,13 @@ a {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
+/* Тут нужно через аутлайн? */
 .portfolio-item {
     width: calc((100% - 60px)/ 3);
     margin-right: 30px;
     margin-bottom: 30px;
     background-color: #ffffff;
+    outline: 1px solid #EEEEEE;
 }
 
 .portfolio-item:nth-child(3n) {
@@ -540,9 +577,9 @@ a {
 
 .card-description {
     padding: 20px 24px;
-    border-left: 1px solid #EEEEEE;
+    /* border-left: 1px solid #EEEEEE;
     border-right: 1px solid #EEEEEE;
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE; */
 }
 
 .portfolio__title {
@@ -595,4 +632,43 @@ a {
 .portfolio__link:hover .portfolio-overlay,
 .portfolio__link:focus .portfolio-overlay {
     transform: translateY(0);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    min-width: 528px;
+    min-height: 581px;
+    background-color: var(--main-light-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-light-color);
 }
